@@ -124,9 +124,9 @@ useEffect(() => {
 
 const menuItems = [
   { name: "ABOUT ME", path: "about" },
-  { name: "SERVICES", id: "services" },
+  { name: "SERVICES", path: "services" },
   { name: "PORTFOLIO", path: "/" },
-  { name: "CONTACT", id: "contact" },
+  { name: "CONTACT", path: "contact" },
 ];
 
   const galleryImages = data.slice(0, 6);
@@ -217,12 +217,12 @@ const menuItems = [
 
         .stroke-text {
           color: transparent;
-          -webkit-text-stroke: 1px rgba(212, 166, 74, 0.14);
+          -webkit-text-stroke: 1px rgba(245, 165, 6, 0.89);
         }
 
         @media (min-width: 768px) {
           .stroke-text {
-            -webkit-text-stroke: 2px rgba(212, 166, 74, 0.14);
+            -webkit-text-stroke: 1px rgba(245, 165, 6, 0.89);
           }
         }
 
@@ -239,7 +239,7 @@ const menuItems = [
         }
 
         .cta-line {
-          opacity: 0;
+          opacity: 1;
           transform: translateY(60px);
           transition: opacity 1s ease, transform 1s ease;
         }
@@ -314,26 +314,6 @@ const menuItems = [
 
       
       <div className="bg-black min-h-screen text-white">
-        {/* Navbar */}
-        <div className="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-8 py-5 md:py-6 bg-black">
-          <h1
-            className="text-lg font-bold tracking-[0.3em] cursor-pointer"
-            onClick={() =>
-              document.getElementById("home")?.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              })
-            }
-          >
-           Fox TATTOO
-          </h1>
-
-          <div className="cursor-pointer space-y-1" onClick={handleMenuToggle}>
-            <div className="w-6 h-[2px] bg-white"></div>
-            <div className="w-6 h-[2px] bg-white"></div>
-            <div className="w-6 h-[2px] bg-white"></div>
-          </div>
-        </div>
 
         {/* Menu */}
         {menuMounted && (
@@ -350,32 +330,18 @@ const menuItems = [
 
   return (
     <p key={index} className="overflow-hidden">
-      {item.path ? (
-        <Link
-          to={item.path}
-          onClick={closeMenu}
-          className={`inline-block cursor-pointer transition-all duration-700 ease-in-out ${
-            menuTextOpen
-              ? "translate-y-0 opacity-100"
-              : "translate-y-12 opacity-0"
-          }`}
-          style={{ transitionDelay: `${delay}ms` }}
-        >
-          {item.name}
-        </Link>
-      ) : (
-        <span
-          onClick={() => scrollToSection(item.id)}
-          className={`inline-block cursor-pointer transition-all duration-700 ease-in-out ${
-            menuTextOpen
-              ? "translate-y-0 opacity-100"
-              : "translate-y-12 opacity-0"
-          }`}
-          style={{ transitionDelay: `${delay}ms` }}
-        >
-          {item.name}
-        </span>
-      )}
+      <Link
+        to={item.path}
+        onClick={closeMenu}
+        className={`inline-block cursor-pointer transition-all duration-700 ease-in-out ${
+          menuTextOpen
+            ? "translate-y-0 opacity-100"
+            : "translate-y-12 opacity-0"
+        }`}
+        style={{ transitionDelay: `${delay}ms` }}
+      >
+        {item.name}
+      </Link>
     </p>
   );
 })}
@@ -386,7 +352,7 @@ const menuItems = [
         {/* Hero Section */}
         <div id="home" className="pt-28 px-6 md:px-10 lg:px-16">
           <div className="flex flex-col lg:flex-row items-center gap-10 min-h-[60vh]">
-            <div className="w-full lg:w-1/2 space-y-6">
+            <div className="w-full lg:w-1/2 space-y-6 mt-12">
               <p className="uppercase tracking-[0.3em] text-sm text-gray-400">
                 Custom Tattoo Artist in Bhopal – Fox Tattoo Studio
               </p>
@@ -399,12 +365,12 @@ const menuItems = [
                 We specialize in custom tattoos, realistic designs, black & grey work, and modern tattoo styles. Our goal is to deliver clean, safe, and high-quality tattoos that last a lifetime.
               </p>
 
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="inline-block border border-white px-6 py-3 rounded-full text-sm tracking-wide uppercase hover:bg-white hover:text-black transition duration-300"
               >
               Book your appointment today             
-            </a>
+            </Link>
             </div>
 
             <div className="w-full lg:w-1/2 overflow-hidden space-y-4">
@@ -577,14 +543,14 @@ Get Your Custom Tattoo Today            </h2>
             >
 Professional. Safe. Unique Designs.            </p>
 
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className={`cta-line ${
                 showCtaSection ? "show" : ""
               } cta-link mt-4 sm:mt-5 md:mt-10 text-white font-bold uppercase text-[10px] sm:text-[12px] md:text-[24px]`}
               style={{ transitionDelay: "600ms" }}
             >
-Book Your Tattoo Now            </a>
+Book Your Tattoo Now            </Link>
           </div>
         </div>
 

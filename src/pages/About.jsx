@@ -171,17 +171,17 @@ const handleServiceClick = (title) => {
     <>
       <style>{`
         .award-spin {
-          animation: spin 12s linear infinite;
-        }
+  animation: spin 12s linear infinite;
+}
 
-        @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
         .reveal-left {
           opacity: 0;
@@ -350,31 +350,57 @@ const handleServiceClick = (title) => {
               </a>
 
               <div
-                className={`reveal-left ${
-                  showIntroSection ? "show" : ""
-                } mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-6`}
-                style={{ transitionDelay: "620ms" }}
-              >
-                <div className="relative w-28 h-28 flex items-center justify-center">
-                  <div className="absolute inset-0 rounded-full border border-white/30"></div>
-                  <div className="absolute inset-0 flex items-center justify-center text-white text-3xl">
-                    5★
-                  </div>
-                  <div className="absolute inset-0 rounded-full award-spin">
-                    <div className="w-full h-full flex items-center justify-center text-[10px] tracking-[0.35em] uppercase text-white/80">
-                      Client Rating
-                    </div>
-                  </div>
-                </div>
+  className={`reveal-left ${
+    showIntroSection ? "show" : ""
+  } mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-6`}
+  style={{ transitionDelay: "620ms" }}
+>
+  <div className="relative w-[110px] h-[110px] flex items-center justify-center">
+    <div className="absolute inset-0 award-spin">
+      <svg
+        viewBox="0 0 120 120"
+        className="w-full h-full"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <path
+            id="awardCircle"
+            d="M 60,60
+               m -40,0
+               a 40,40 0 1,1 80,0
+               a 40,40 0 1,1 -80,0"
+          />
+        </defs>
 
-                <div>
-                  <h3 className="text-xl md:text-2xl font-bold uppercase">
-                    Trusted Tattoo Artist
-                  </h3>
-                  <p className="mt-2 text-gray-400 text-lg">
-1000+ Happy Clients | Expert in Custom & Cover-Up Tattoos                  </p>
-                </div>
-              </div>
+        <text
+          fill="white"
+          fontSize="10"
+          fontWeight="600"
+          letterSpacing="4"
+          textTransform="uppercase"
+        >
+          <textPath href="#awardCircle" startOffset="0%">
+            Client Rating • Client Rating •
+          </textPath>
+        </text>
+      </svg>
+    </div>
+
+    <div className="absolute inset-0 flex items-center justify-center text-white text-[24px]">
+      5★
+    </div>
+  </div>
+
+  <div>
+    <h3 className="text-xl md:text-2xl font-bold uppercase">
+      Trusted Tattoo Artist
+    </h3>
+    <p className="mt-2 text-gray-400 text-lg">
+      1000+ Happy Clients | Expert in Custom & Cover-Up Tattoos
+    </p>
+  </div>
+</div>
             </div>
           </div>
         </section>

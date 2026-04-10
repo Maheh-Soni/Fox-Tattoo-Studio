@@ -3,6 +3,7 @@ import { PencilRuler, ScanLine, Ear, SprayCan } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import img2 from "../assets/vicky2.jpeg";
 import img3 from "../assets/vicky3.jpeg";
+import { Link } from "react-router-dom";
 
 function Services() {
   const [showServiceCards, setShowServiceCards] = useState(false);
@@ -105,12 +106,12 @@ useEffect(() => {
 
 .service-stroke-text {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(212, 166, 74, 0.14);
+  -webkit-text-stroke: 1px rgba(245, 165, 6, 0.89);
 }
 
 @media (min-width: 768px) {
   .service-stroke-text {
-    -webkit-text-stroke: 2px rgba(212, 166, 74, 0.14);
+    -webkit-text-stroke: 1px rgba(245, 165, 6, 0.89);
   }
 }
 
@@ -225,11 +226,11 @@ useEffect(() => {
               styles. Our focus is on precision, hygiene, and creating tattoos that truly represent your personality.
             </p>
 
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="services-link inline-block mt-12 uppercase font-bold text-lg tracking-wide"
             >
-Book Your Tattoo Appointment            </a>
+Book Your Tattoo Appointment            </Link>
           </div>
         </div>
       </div>
@@ -359,12 +360,12 @@ Book Your Tattoo Appointment            </a>
       </h2>
 
       <div className="lg:pl-2 lg:pt-2">
-        <a
+        <Link
           href="/contact"
           className="appointment-link inline-block uppercase font-bold text-[14px] md:text-lg tracking-wide"
         >
           Make an Appointment
-        </a>
+        </Link>
       </div>
     </div>
 

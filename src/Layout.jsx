@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-
+import logo from "./assets/foxtattoologo.png";
 
 function Layout() {
   const navigate = useNavigate();
@@ -21,24 +21,24 @@ function Layout() {
     playIntro();
   }, []);
 
-const playIntro = (nextPath = null) => {
-  setShowIntro(true);
-  setIntroSlideUp(false);
-  setFoxActive(false);
-  setTextActive(false);
+  const playIntro = (nextPath = null) => {
+    setShowIntro(true);
+    setIntroSlideUp(false);
+    setFoxActive(false);
+    setTextActive(false);
 
-  setTimeout(() => setFoxActive(true), 400);
-  setTimeout(() => setTextActive(true), 900);
-  setTimeout(() => setIntroSlideUp(true), 1800);
+    setTimeout(() => setFoxActive(true), 400);
+    setTimeout(() => setTextActive(true), 900);
+    setTimeout(() => setIntroSlideUp(true), 1800);
 
-  setTimeout(() => {
-    if (nextPath) {
-      navigate(nextPath);
-    }
-    setShowIntro(false);
-    setIsNavigating(false);
-  }, 2600);
-};
+    setTimeout(() => {
+      if (nextPath) {
+        navigate(nextPath);
+      }
+      setShowIntro(false);
+      setIsNavigating(false);
+    }, 2600);
+  };
 
   const openMenu = () => {
     setMenuMounted(true);
@@ -52,17 +52,17 @@ const playIntro = (nextPath = null) => {
     }, 750);
   };
 
-const closeMenu = () => {
-  setMenuTextOpen(false);
+  const closeMenu = () => {
+    setMenuTextOpen(false);
 
-  setTimeout(() => {
-    setMenuPanelOpen(false);
-  }, 900);
+    setTimeout(() => {
+      setMenuPanelOpen(false);
+    }, 900);
 
-  setTimeout(() => {
-    setMenuMounted(false);
-  }, 1650);
-};
+    setTimeout(() => {
+      setMenuMounted(false);
+    }, 1650);
+  };
 
   const handleMenuToggle = () => {
     if (menuMounted) {
@@ -72,33 +72,30 @@ const closeMenu = () => {
     }
   };
 
-const handlePageChange = (path) => {
-  if (isNavigating) return;
+  const handlePageChange = (path) => {
+    if (isNavigating) return;
 
-  setIsNavigating(true);
+    setIsNavigating(true);
 
-  // instantly hide menu
-  setMenuTextOpen(false);
-  setMenuPanelOpen(false);
-  setMenuMounted(false);
+    setMenuTextOpen(false);
+    setMenuPanelOpen(false);
+    setMenuMounted(false);
 
-  // if already on same page, play intro and reopen same page feel
-  if (location.pathname === path) {
-    playIntro();
+    if (location.pathname === path) {
+      playIntro();
 
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }, 2600);
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }, 2600);
 
-    return;
-  }
+      return;
+    }
 
-  // if different page
-  playIntro(path);
-};
+    playIntro(path);
+  };
 
   const menuItems = [
     { name: "ABOUT ME", path: "/about" },
@@ -126,6 +123,10 @@ const handlePageChange = (path) => {
         .intro-slide-up {
           animation: introSlideUp 0.8s ease-in-out forwards;
         }
+
+        .logo-glow {
+          filter: drop-shadow(0 0 12px rgba(212, 166, 74, 0.25));
+        }
       `}</style>
 
       {showIntro && (
@@ -134,65 +135,38 @@ const handlePageChange = (path) => {
             introSlideUp ? "intro-slide-up" : ""
           }`}
         >
-          <div className="flex flex-col items-center gap-6">
-            <div
-              className="transition-all duration-700"
+          <div className="flex flex-col items-center gap-6 px-6 text-center">
+            <img
+              src={logo}
+              alt="Fox Tattoo Logo"
+              className="w-[480px] sm:w-[520px] md:w-[580px] h-auto object-contain logo-glow transition-all duration-700"
               style={{
-                color: foxActive ? "#d4a017" : "#6b7280",
-                transform: foxActive ? "scale(1.04)" : "scale(1)",
+                opacity: foxActive ? 1 : 0.45,
+                transform: foxActive ? "scale(1.04)" : "scale(0.96)",
               }}
-            >
-              <svg
-                width="90"
-                height="90"
-                viewBox="0 0 100 100"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M50 12L62 30L84 20L74 42L90 56L68 58L70 82L50 70L30 82L32 58L10 56L26 42L16 20L38 30L50 12Z" />
-              </svg>
-            </div>
-
-            <h1 className="text-3xl md:text-5xl font-bold tracking-[0.35em] uppercase text-center">
-              <span
-                className="transition-colors duration-700"
-                style={{ color: foxActive ? "#d4a017" : "#6b7280" }}
-              >
-                FOX
-              </span>
-              <span className="inline-block w-4 md:w-6"></span>
-              <span
-                className="transition-colors duration-700"
-                style={{ color: textActive ? "#ffffff" : "#6b7280" }}
-              >
-                TATTOO
-              </span>
-              <span className="inline-block w-4 md:w-6"></span>
-              <span
-                className="transition-colors duration-700"
-                style={{ color: textActive ? "#ffffff" : "#6b7280" }}
-              >
-                STUDIO
-              </span>
-            </h1>
+            />
           </div>
         </div>
       )}
 
       <div className="bg-black min-h-screen text-white">
         {/* Navbar */}
-        <div className="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-8 py-5 md:py-6 bg-black">
+        <div className="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-8 py-5 md:py-8 bg-black">
           <button
-            className="text-lg font-bold tracking-[0.3em] cursor-pointer"
+            className="cursor-pointer flex items-center"
             onClick={() => handlePageChange("/")}
           >
-            FOX TATTOO
+            <img
+              src={logo}
+              alt="Fox Tattoo Logo"
+              className="h-12 sm:h-12 md:h-16 w-auto object-contain"
+            />
           </button>
 
-          <div className="cursor-pointer space-y-1" onClick={handleMenuToggle}>
-            <div className="w-6 h-[2px] bg-white"></div>
-            <div className="w-6 h-[2px] bg-white"></div>
-            <div className="w-6 h-[2px] bg-white"></div>
+          <div className="cursor-pointer space-y-2" onClick={handleMenuToggle}>
+            <div className="w-16 h-[12px] bg-white"></div>
+            <div className="w-16 h-[12px] bg-white"></div>
+            <div className="w-16 h-[12px] bg-white"></div>
           </div>
         </div>
 
@@ -203,28 +177,36 @@ const handlePageChange = (path) => {
               menuPanelOpen ? "translate-y-0" : "-translate-y-full"
             }`}
           >
+            <div className="absolute top-8 left-6 md:left-8">
+              <img
+                src={logo}
+                alt="Fox Tattoo Logo"
+                className="h-12 sm:h-14 md:h-16 w-auto object-contain"
+              />
+            </div>
+
             <div className="text-center space-y-6 sm:space-y-8 md:space-y-10 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-widest">
               {menuItems.map((item, index, arr) => {
-  const delay = menuTextOpen
-    ? index * 180
-    : (arr.length - 1 - index) * 180;
+                const delay = menuTextOpen
+                  ? index * 180
+                  : (arr.length - 1 - index) * 180;
 
-  return (
-    <p key={index} className="overflow-hidden">
-      <button
-        onClick={() => handlePageChange(item.path)}
-        className={`inline-block cursor-pointer transition-all duration-700 ease-in-out ${
-          menuTextOpen
-            ? "translate-y-0 opacity-100"
-            : "translate-y-12 opacity-0"
-        }`}
-        style={{ transitionDelay: `${delay}ms` }}
-      >
-        {item.name}
-      </button>
-    </p>
-  );
-})}
+                return (
+                  <p key={index} className="overflow-hidden">
+                    <button
+                      onClick={() => handlePageChange(item.path)}
+                      className={`inline-block cursor-pointer transition-all duration-700 ease-in-out ${
+                        menuTextOpen
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-12 opacity-0"
+                      }`}
+                      style={{ transitionDelay: `${delay}ms` }}
+                    >
+                      {item.name}
+                    </button>
+                  </p>
+                );
+              })}
             </div>
           </div>
         )}
@@ -239,13 +221,12 @@ const handlePageChange = (path) => {
         >
           <div className="grid grid-cols-1 md:grid-cols-[32%_68%]">
             <div className="border-b md:border-b-0 md:border-r border-white/20 px-5 sm:px-8 md:px-16 pt-10 pb-8 md:py-16">
-              <div className="flex items-center gap-3">
-                <span className="text-[#d4a64a] text-[34px] md:text-5xl font-bold leading-none">
-                  Fox
-                </span>
-                <h2 className="text-[18px] md:text-3xl font-semibold tracking-[0.22em] uppercase">
-                  Tattoo
-                </h2>
+              <div className="flex items-center">
+                <img
+                  src={logo}
+                  alt="Fox Tattoo Logo"
+                  className="h-14 md:h-16 w-auto object-contain"
+                />
               </div>
 
               <div className="mt-8 space-y-3">
@@ -290,12 +271,13 @@ const handlePageChange = (path) => {
               <div className="px-4 md:px-16 py-5 md:py-16">
                 <div className="flex flex-wrap items-center gap-x-1 gap-y-2 text-[10px] md:text-sm text-white/70 leading-5">
                   <span>
-                    © 2026 Fox Tattoo Studio.  <span className="text-white">All Rights Reserved.</span>
+                    © 2026 Fox Tattoo Studio.{" "}
+                    <span className="text-white">All Rights Reserved.</span>
                   </span>
                   <span className="text-white/35">•</span>
                   <span>
-                    Open Hours: <span className="text-white">Mon – Sun: 11:00 AM – 9:00 PM</span>
-                  
+                    Open Hours:{" "}
+                    <span className="text-white">Mon – Sun: 11:00 AM – 9:00 PM</span>
                   </span>
                   <span className="text-white/35">•</span>
                   <span>Licenses</span>

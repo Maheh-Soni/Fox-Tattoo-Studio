@@ -4,10 +4,12 @@ import Portfolio from "./pages/Portfolio";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
+import ScrollToTop from "./pages/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Portfolio />} />
