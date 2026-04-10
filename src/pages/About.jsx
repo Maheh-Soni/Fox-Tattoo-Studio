@@ -2,6 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import myimage from "../assets/vicky1.jpeg";
 import img2 from "../assets/vicky2.jpeg";
 import img3 from "../assets/vicky3.jpeg";
+import img4 from "../assets/vicky15.jpeg";
+import img5 from "../assets/vicky11.jpg";
+import img6 from "../assets/vicky22.jpeg";
+
+
+
 
 function About() {
   const [activeService, setActiveService] = useState("");
@@ -30,21 +36,21 @@ function About() {
       title: "Tattooing",
       description:
         "Professional tattooing with clean lines, smooth shading, and long-lasting ink using modern hygienic techniques.",
-      image: myimage,
+      image: img6,
     },
     {
       title: "Design Work",
       description:
         "Custom tattoo designs tailored to your ideas, ensuring every tattoo is unique and meaningful.",
       image:
-        myimage,
+        img4,
     },
     {
       title: "Piercing",
       description:
         "Safe and hygienic piercing services performed with proper care and professional equipment.",
       image:
-        myimage,
+        img5,
     },
   ];
 
@@ -306,7 +312,7 @@ const handleServiceClick = (title) => {
               }`}
             >
               <img
-                src={currentImage || myimage}
+                src={currentImage || img3}
                 alt="Tattoo artist"
                 className="w-[90%] h-[500px] md:h-[600px] object-cover"
               />
@@ -560,7 +566,7 @@ const handleServiceClick = (title) => {
               style={{ transitionDelay: "350ms" }}
             >
               <img
-                src={currentImage || myimage}
+                src={currentImage || img2}
                 alt={activeService || "Service"}
                 className={`w-full h-[320px] sm:h-[560px] md:h-[760px] object-cover service-image ${
                     imageVisible ? "show" : "hide"
